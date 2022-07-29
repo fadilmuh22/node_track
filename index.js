@@ -13,21 +13,21 @@ const PORT = process.env.PORT || 3700;
 
 io.on("connection", (socket) => {
   socket.on('track-order', (data) => {
-    console.log(data);
     socket.join(data.orderid);
   });
 
   socket.on("position-change", (data) => {
-    console.log(data);
-    io.to(data.orderid).emit("position-change", data);
+    socket.broadcast.to(data.orderid).emit("position-change", data);
   });
 
   socket.on('confirm-order', (data) => {
-    console.log(data);
     io.to(data.orderid).emit('confirm-order', data);
   });
 
-  socket.on("disconnect", () => {});
+});
+
+app.get('/ping', (req, res) => {
+  res.json({'data': 'pong'});
 });
 
 server.listen(PORT, () => {

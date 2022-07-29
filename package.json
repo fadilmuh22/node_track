@@ -1,6 +1,6 @@
 {
-  "name": "node_track",
-  "version": "0.0.0",
+  "name": "realtime_be",
+  "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
